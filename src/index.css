@@ -1,0 +1,117 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f5f5f7;
+  --bg-elevated: #ffffff;
+  --bg-card: rgba(255,255,255,0.72);
+  --bg-card-solid: #ffffff;
+  --bg-inset: rgba(0,0,0,0.04);
+  --bg-inset-strong: rgba(0,0,0,0.06);
+  --bg-glass: rgba(255,255,255,0.6);
+  --bg-overlay: rgba(245,245,247,0.82);
+
+  --border: rgba(0,0,0,0.08);
+  --border-strong: rgba(0,0,0,0.14);
+  --border-hairline: rgba(0,0,0,0.05);
+
+  --text-primary: #1d1d1f;
+  --text-secondary: #6e6e73;
+  --text-tertiary: #a1a1a6;
+  --text-quaternary: #c7c7cc;
+
+  --accent: #0071e3;
+  --accent-light: #e8f1fb;
+  --accent-hover: #0077ed;
+
+  --green: #34c759;
+  --green-light: #e8f8ec;
+  --orange: #ff9500;
+  --orange-light: #fff4e0;
+  --red: #ff3b30;
+  --red-light: #ffe9e8;
+  --purple: #af52de;
+  --purple-light: #f5e8fc;
+  --pink: #ff2d92;
+  --pink-light: #fde6f0;
+  --teal: #5ac8fa;
+  --teal-light: #e0f4fc;
+  --indigo: #5856d6;
+  --indigo-light: #ebebfa;
+
+  --font-display: 'Instrument Serif', 'Times New Roman', serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', sans-serif;
+  --font-mono: 'DM Mono', 'SF Mono', ui-monospace, monospace;
+
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-2xl: 28px;
+  --radius-full: 999px;
+
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.05);
+  --shadow-xl: 0 24px 64px rgba(0,0,0,0.14), 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 0 0 0.5px rgba(0,0,0,0.05);
+
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 1200px 600px at 20% -10%, rgba(0,113,227,0.06), transparent 60%),
+    radial-gradient(ellipse 800px 400px at 90% 100%, rgba(175,82,222,0.05), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root { position: relative; z-index: 1; }
+
+button { font-family: var(--font-body); cursor: pointer; border: none; outline: none; letter-spacing: -0.01em; transition: transform 0.15s var(--ease-smooth), background 0.2s, box-shadow 0.2s, color 0.2s, border-color 0.2s; }
+button:active:not(:disabled) { transform: scale(0.97); }
+
+input, select, textarea {
+  font-family: var(--font-body);
+  outline: none;
+  letter-spacing: -0.01em;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.2); }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+@keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-4px); } }
+@keyframes boardingScan { 0% { transform: scaleX(0); opacity: 0.8; } 100% { transform: scaleX(1); opacity: 0; } }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes stampIn { 0% { opacity: 0; transform: scale(1.4) rotate(-8deg); } 60% { transform: scale(0.95) rotate(2deg); } 100% { opacity: 1; transform: scale(1) rotate(-6deg); } }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+@keyframes ripple { 0% { transform: scale(1); opacity: 0.5; } 100% { transform: scale(2.5); opacity: 0; } }
+
+.glass {
+  background: var(--bg-card);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
